@@ -17,7 +17,7 @@ namespace Company.WebApplication1
             builder.Services.AddHttpClient();
             builder.Services.AddHttpClient("zippopotam", c =>
             {
-                c.BaseAddress = new Uri("https://api.zippopotam.us/us/");
+                c.BaseAddress = new Uri(builder.Configuration.GetValue<string>("zippopotamAPI"));
             });
 
             var app = builder.Build();
