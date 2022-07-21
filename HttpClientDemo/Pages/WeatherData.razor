@@ -39,11 +39,11 @@ else
 
 	protected override async Task OnInitializedAsync()
 	{
-		var client = _clientFactory.CreateClient();
+		var client = _clientFactory.CreateClient("zippopotam");
 
 		try
 		{
-			forecast = await client.GetFromJsonAsync<WeatherForecastModel>("https://api.zippopotam.us/us/ma/new");
+			forecast = await client.GetFromJsonAsync<WeatherForecastModel>("ma/new");
 			errorString = null;
 		}
 		catch (Exception ex)

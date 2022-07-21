@@ -15,6 +15,10 @@ namespace Company.WebApplication1
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<WeatherForecastService>();
             builder.Services.AddHttpClient();
+            builder.Services.AddHttpClient("zippopotam", c =>
+            {
+                c.BaseAddress = new Uri("https://api.zippopotam.us/us/");
+            });
 
             var app = builder.Build();
 
