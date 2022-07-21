@@ -39,21 +39,17 @@ else
 
 	protected override async Task OnInitializedAsync()
 	{
-		var request = new HttpRequestMessage(HttpMethod.Get,
-			"https://api.zippopotam.us/us/ma/new");
-
 		var client = _clientFactory.CreateClient();
 
-		HttpResponseMessage response = await client.SendAsync(request);
-
-		if (response.IsSuccessStatusCode)
+		try
 		{
-			forecast = await response.Content.ReadFromJsonAsync<WeatherForecastModel>();
+			forecast = await client.GetFromJsonAsync<WeatherForecastModel>("https://api.zippopotam.us/us/ma/new");
 			errorString = null;
 		}
-		else
+		catch (Exception ex)
 		{
-			errorString = $"There was an error getting our forecast: {response.ReasonPhrase}";
+			
+			errorString = $"There was an error getting our forecast: { ex.Message }";
 		}
 	}
 }
